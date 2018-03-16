@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/App';
+import AppRouter, { history } from './routers/AppRouter';
 import registerServiceWorker from './registerServiceWorker';
 import { Provider } from 'react-redux';
 import store from './store/store';
 
 import { setTodos } from './actions/todos';
 
+import { firebase } from './firebase/firebase';
 
 console.log(store.getState());
 
@@ -16,10 +17,30 @@ store.subscribe(() => {
 
 const TodoApp = () => (
     <Provider store={store}>
-        <App />
+        <AppRouter />
     </Provider>
 );
 
-store.dispatch(setTodos())
-ReactDOM.render(<TodoApp />, document.getElementById('root'));
+let hasRendered = false;
+const renderApp = () => {
+    if(!hasRendered) {
+        ReactDOM.render(<TodoApp />, document.getElementById('root'));
+        hasRendered = true;
+    }
+}
+
+firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+        store.dispatch(setTodos())
+        renderApp();
+
+        if (history.location.pathname === '/') {
+            history.push('/app');
+        }
+    } else {
+        renderApp();
+        history.push('/');
+    }
+});
+
 registerServiceWorker();
