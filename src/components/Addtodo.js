@@ -10,7 +10,9 @@ class Addtodo extends Component {
             return;
         }
 
-        this.props.addToList(input.value);
+        this.props.addToList({
+            task: input.value
+        });
         input.value = '';
     }
 

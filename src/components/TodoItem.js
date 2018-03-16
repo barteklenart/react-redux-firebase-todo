@@ -16,7 +16,7 @@ class TodoItem extends Component {
             const { value } = this.refs.newItemValue;
             
             if (value) {
-                this.props.editTodo(id, value);
+                this.props.editTodo(id, {task: value});
             } 
             
             this.setState({
