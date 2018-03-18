@@ -3,10 +3,13 @@ import { connect } from 'react-redux';
 
 import { startLogin } from '../actions/auth'
 
+import { Button } from 'mdbreact';
+import '../css/loginpage.css';
 
 export const LoginPage = (props) => (
-    <div>
-        <button onClick={props.startLogin}>Logi in</button>
+    <div className="loginpage">
+        <h1>Todo app</h1>
+        <Button color="primary" onClick={props.startLogin}>Logi in</Button>
     </div>
 );
 

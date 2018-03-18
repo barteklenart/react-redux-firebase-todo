@@ -25,7 +25,7 @@ export default (state = defaultState, action) => {
                 ...state,
                 sortBy: 'text',
                 text: action.text
-            }
+            } 
         default: 
             return state;
     }

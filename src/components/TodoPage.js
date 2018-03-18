@@ -5,11 +5,19 @@ import Addtodo from './Addtodo';
 import TodoList from './Todolist';
 import Sort from './Sort';
 
+import { Button } from 'mdbreact';
+import '../css/todopage.css';
+
 import { startLogout } from '../actions/auth';
+
 
 const TodoPage = (props) => (
     <div className="App">
-        <button onClick={props.startLogout}>Log out</button>
+        <div className="row">
+            <div className="col-md-12 log-out">
+                <Button onClick={props.startLogout} color="indigo">Log out</Button>
+            </div>
+        </div>
         <Addtodo />
         <Sort />
         <TodoList />

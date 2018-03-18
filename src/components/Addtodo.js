@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 
 import { addTodo } from '../actions/todos';
 
+import { Button, FormInline, Input } from 'mdbreact';
+import '../css/todopage.css';
+
 class Addtodo extends Component {
     handleBtnClick = () => {
         const { input } = this.refs;
@@ -18,8 +21,10 @@ class Addtodo extends Component {
 
     render() {
         return (
-            <div>
-                <input type="text" ref="input" /><button onClick={this.handleBtnClick}>Add</button> 
+            <div className="row">
+                <div className="col todo-input__section">
+                    <input placeholder="Add todo..." type="text" ref="input" className="input-todo" /><Button onClick={this.handleBtnClick} color="primary">Add</Button> 
+                </div>
             </div>
         );
     }

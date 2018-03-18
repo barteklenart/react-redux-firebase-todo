@@ -2,17 +2,36 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { removeTodo, editTodo } from '../actions/todos';
 
+import { Button } from 'mdbreact';
+import '../css/todopage.css';
+
 class TodoItem extends Component {
     constructor(){
         super();
 
         this.state = {
-            isEdit: false
+            isEdit: false,
+            task: ''
         }
+
+    }
+    
+    componentDidMount(){
+        this.setState({
+            task: this.props.task
+        })
+    }
+
+    onTaskChange = (e) => {
+        const { value } = e.target;
+        this.setState({
+            task: value
+        })
     }
 
     editTodo = (id) => {
         if (this.state.isEdit) {
+            this.refs['list-el'].classList.toggle('list-group-item--edit');
             const { value } = this.refs.newItemValue;
             
             if (value) {
@@ -24,6 +43,7 @@ class TodoItem extends Component {
             })
         } else {
             this.setState({ isEdit: true })
+            this.refs['list-el'].classList.toggle('list-group-item--edit')
         }
     }
 
@@ -33,13 +53,16 @@ class TodoItem extends Component {
 
     render() {
         const { id, task } = this.props;
-        const editInput = this.state.isEdit ? <input type="text" ref="newItemValue" /> : null;
+        const editInput = this.state.isEdit ? <input type="text" ref="newItemValue" value={this.state.task} onChange={this.onTaskChange} /> : null;
+        const removeBtn = !this.state.isEdit ? <Button size="sm" color="danger" onClick={() => this.removeElement(id)}>X</Button> : null;
         return (
-            <li>
-                {task}
-                {editInput}
-                <button onClick={() => this.editTodo(id)}>Edit</button>
-                <button onClick={() => this.removeElement(id)}>X</button>
+            <li className="list-group-item d-flex justify-content-between align-items-center" ref="list-el">
+                <span className="list-group-item__task">{task}</span>
+                <p className="list_group-item__control">
+                    {editInput}
+                    <Button size="sm" color="light-green" onClick={() => this.editTodo(id)}>Edit</Button>
+                    {removeBtn}
+                </p>
             </li>
         )
     }

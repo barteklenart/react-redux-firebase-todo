@@ -1,0 +1,49 @@
+.log-out {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.todo-input__section {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.container .list-group {
+    margin-bottom: 40px;
+}
+
+.list-group .list-group-item.list-group-item--edit .list-group-item__task{
+    display: none;
+}
+
+.list_group-item__control {
+    margin-bottom: 0;
+}
+
+.list-group .list-group-item.list-group-item--edit .list_group-item__control{
+    width: 100%;
+}
+
+@media (min-width: 481px){
+    .todo-input__section .input-todo {
+        width: calc(100% - 106px);
+    }
+
+    .todo-input__section {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .list-group-item__task {
+        width: calc(100% - 154px); 
+        display: inline-block;
+    }
+}
+
+@media (max-width: 480px){
+    .list-group-item {
+        align-items: normal !important;
+        flex-direction: column;
+    }
+}

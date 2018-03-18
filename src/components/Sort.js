@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { setTextFilter, sortByTextDown, sortByTextUp, sortByDefault } from '../actions/filters'
 
+import { Button } from 'mdbreact';
+
 const Sort = (props) => {
 
     const handlerSortFilter = (btn) => {
@@ -26,10 +28,10 @@ const Sort = (props) => {
 
     return (
         <div>
-            <button onClick={() => handlerSortFilter('textup')}>Sort up</button>
-            <button onClick={() => handlerSortFilter('textdown')}>Sort down</button>
-            <button onClick={() => handlerSortFilter('default')}>Sort defalut</button>
-            <input type="text" onKeyUp={handleTextFilter} />
+            <Button color="elegant" size="sm" onClick={() => handlerSortFilter('default')}>Sort default</Button>
+            <Button color="elegant" size="sm" onClick={() => handlerSortFilter('textup')}>↑</Button>
+            <Button color="elegant" size="sm" onClick={() => handlerSortFilter('textdown')}>↓</Button>
+            <input type="text" placeholder="Search..." onKeyUp={handleTextFilter} />
         </div>
     );
 }

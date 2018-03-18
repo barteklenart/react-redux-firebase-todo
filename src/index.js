@@ -9,15 +9,15 @@ import { setTodos } from './actions/todos';
 
 import { firebase } from './firebase/firebase';
 
-console.log(store.getState());
-
-store.subscribe(() => {
-    console.log(store.getState())
-})
+import 'font-awesome/css/font-awesome.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'mdbreact/docs/css/mdb.min.css';
 
 const TodoApp = () => (
     <Provider store={store}>
-        <AppRouter />
+        <div className="container">
+            <AppRouter />
+        </div>
     </Provider>
 );
 

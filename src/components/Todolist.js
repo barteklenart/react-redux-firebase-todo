@@ -12,8 +12,8 @@ const Todolist = (props) => {
     );
 
     return (
-        <ul>
-            {createList(props.todos)}            
+        <ul className="list-group">
+            {createList(props.todos)}
         </ul>
     );
 }
